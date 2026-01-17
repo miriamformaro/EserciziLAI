@@ -29,3 +29,7 @@ trovaIndici z (x:l) = [i | (i,x) <-zip[1..] l, z==x]
 -- Scrivi una funzione che prende una lista e restituisce solo gli elementi che si trovano agli indici 0, 2, 4, 6, ecc...
 prendiPari :: [a] -> [a]
 prendiPari xs = [x | (i,x)<-zip[0..] xs, even i]
+
+-- Scrivi una funzione che prende in input due liste e restituisce gli indici in cui le due liste hanno lo stesso valore.
+indiciCoincidenti :: Eq a => [a] -> [a] -> [Int]
+indiciCoincidenti xs ys = [i | (i,x)<-zip[0..] xs, (i,y)<-zip[0..] ys, x==y]
