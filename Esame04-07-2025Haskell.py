@@ -10,3 +10,23 @@ convertiLista1 xs = [maximum x | x <- xs]
 sommaSub :: [[Int]] -> [Int]
 sommaSub [[]] = []
 sommaSub xs = [sum x | x<- xs]
+
+sommaPari :: [[Int]] -> [Int]
+sommaPari [[]] = []
+sommaPari xs =  [length (filter even x) | x<-xs]
+
+-- Data una lista di liste, restituisci una lista contenente la somma soltanto dei numeri maggiori di 5 per ogni sottolista.
+sommaGrandi :: [[Int]] -> [Int]
+sommaGrandi [[]] = []
+sommaGrandi xs = [sum (filter (>5) x) | x<-xs]
+
+-- Data una lista di liste, tieni nel risultato solo le sottoliste che hanno una lunghezza maggiore di 2. Le altre devono sparire.
+soloLun :: [[Int]] -> [[Int]]
+soloLun [[]] = [[]]
+soloLun xs = [x | x<-xs, length x > 2]
+
+-- Data una lista di liste, restituisci una lista di booleani. True se tutti i numeri di quella sottolista sono pari, False altrimenti.
+-- sonoTuttiPari [[2, 4], [2, 3], []]
+sonoTuttiPari :: [[Int]] -> [Bool]
+sonoTuttiPari [[]] = []
+sonoTuttiPari xs = [all even x | x<-xs]
