@@ -16,13 +16,11 @@ remove ind l = [x | (i,x)<-zip[0..] l, not (i `elem` ind)]
 -- Un valore di sostituzione (valore).
 -- La lista originale (lista).
 -- La funzione deve restituire una nuova lista dove gli elementi che si trovano nelle posizioni specificate sono stati sostituiti dal valore fornito. Gli altri rimangono invariati.
-
 sostituisciIndici :: Eq a => [Int] -> a -> [a] -> [a]
 sostituisciIndici xs e l = [if i `elem` xs then e else x | (i,x)<-zip[0..] l]
 
 -- Scrivi una funzione che prende in input un elemento x e una lista lista. La funzione deve restituire una lista di interi 
 -- contenente tutti gli indici in cui compare x all'interno della lista.
-
 trovaIndici :: Eq a => a -> [a] -> [Int]
 trovaIndici z (x:l) = [i | (i,x) <-zip[1..] l, z==x]
 
@@ -33,3 +31,11 @@ prendiPari xs = [x | (i,x)<-zip[0..] xs, even i]
 -- Scrivi una funzione che prende in input due liste e restituisce gli indici in cui le due liste hanno lo stesso valore.
 indiciCoincidenti :: Eq a => [a] -> [a] -> [Int]
 indiciCoincidenti xs ys = [i | (i,x)<-zip[0..] xs, (i,y)<-zip[0..] ys, x==y]
+
+-- scrivere una funzione equalsinsamepositions:: Eq a => [a] -> [a] -> [a] che prende due liste di elementi xs e ys, e restituisce una lista zx che contiene coppie (y,x) tali the x=y e x e y appaiono nella stessa posizione in xs e ys.
+-- Esempio
+-- equalsinsamepositions [1, 2, 2] [1, 2, 3, 4] restituisce [1,2]
+equalsinsamepositions:: Eq a => [a] -> [a] -> [a]
+equalsinsamepositions xs ys = [x | (i,x)<-zip[0..] xs, (j,y)<-zip[0..] ys, x==y, i==j]
+                                                                                                                                                                              
+
