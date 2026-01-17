@@ -4,3 +4,9 @@
 convertiLista1 :: [[Int]] -> [Int]
 convertiLista1 [[]] = []
 convertiLista1 xs = [maximum x | x <- xs]
+
+--esercizio simile
+--Scrivi una funzione che prende in input una lista di liste di interi e restituisce una lista contenente la somma degli elementi di ciascuna sottolista.
+sommaSub :: [[Int]] -> [Int]
+sommaSub [[]] = []
+sommaSub xs = [sum x | x<- xs]
