@@ -35,3 +35,8 @@ sonoTuttiPari xs = [all even x | x<-xs]
 iniziali :: [String] -> String
 iniziali [] = ""
 iniziali xs = [head x | x <- xs]
+
+-- Per ogni sottolista, calcola la differenza tra il massimo e il minimo (ovvero quanto "spazia" la lista).
+-- calcolaRange [[1, 10], [5, 5, 5], [0, 20, 2]]
+calcolaRange :: [[Int]] -> [Int]
+calcolaRange xs = [maximum x - minimum x | x<-xs]
