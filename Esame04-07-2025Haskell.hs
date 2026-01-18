@@ -40,3 +40,8 @@ iniziali xs = [head x | x <- xs]
 -- calcolaRange [[1, 10], [5, 5, 5], [0, 20, 2]]
 calcolaRange :: [[Int]] -> [Int]
 calcolaRange xs = [maximum x - minimum x | x<-xs]
+
+-- Data una lista di liste di interi, restituisci una lista di booleani. True se la sottolista contiene il numero 0, False altrimenti.
+-- contieneZero [[1, 2, 3], [0, 5], [], [10, 0]]
+contieneZero :: [[Int]] -> [Bool]
+contieneZero xs = [0 `elem` x | x<-xs]
