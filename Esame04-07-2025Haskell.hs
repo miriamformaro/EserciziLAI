@@ -30,3 +30,8 @@ soloLun xs = [x | x<-xs, length x > 2]
 sonoTuttiPari :: [[Int]] -> [Bool]
 sonoTuttiPari [[]] = []
 sonoTuttiPari xs = [all even x | x<-xs]
+
+-- Scrivi una funzione che prende una lista di parole e restituisce una stringa composta solo dalle prime lettere di ogni parola.
+iniziali :: [String] -> String
+iniziali [] = ""
+iniziali xs = [head x | x <- xs]
