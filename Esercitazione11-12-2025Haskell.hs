@@ -6,3 +6,6 @@ convL :: [(Int,Int)] -> [[Int]]
 convL xs = [ [x*i | i<-[1..k]] | (x,k)<-xs]
 
 -- generare tutti i numeri compresi tra il primo e il secondo elemento della coppia.
+-- esplodiIntervalli [(1, 4), (10, 12), (5, 5)]
+esplodiIntervalli :: [(Int,Int)] -> [[Int]]
+esplodiIntervalli xs = [ [i | i<-[x..k]] | (x,k)<-xs]
