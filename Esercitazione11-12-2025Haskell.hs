@@ -9,3 +9,13 @@ convL xs = [ [x*i | i<-[1..k]] | (x,k)<-xs]
 -- esplodiIntervalli [(1, 4), (10, 12), (5, 5)]
 esplodiIntervalli :: [(Int,Int)] -> [[Int]]
 esplodiIntervalli xs = [ [i | i<-[x..k]] | (x,k)<-xs]
+
+-- calcoliamo le potenze. La coppia è (base, esponente). Devi generare la lista [base^1, base^2, ..., base^esponente].
+-- listaPotenze [(2, 4), (3, 2)]
+listaPotenze :: [(Int,Int)] -> [[Int]]
+listaPotenze xs = [ [x^i | i<-[1..k]] | (x,k)<-xs]
+
+-- La coppia è (Carattere, Numero). Devi ripetere quel carattere Numero volte. Ricorda che il risultato sarà una lista di stringhe ([String]), che è tecnicamente una lista di liste di caratteri ([[Char]]).
+-- creaEco [('a', 3), ('z', 1), ('!', 4)]
+creaEco :: [(Char,Int)] -> [String]
+creaEco xs = [ [x | i<-[0..n]] | (x,n)<-xs]
