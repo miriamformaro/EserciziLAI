@@ -4,3 +4,5 @@
 -- convertilista [(1,3), (2,2)] = [[1,2,3],[2,4]]
 convL :: [(Int,Int)] -> [[Int]]
 convL xs = [ [x*i | i<-[1..k]] | (x,k)<-xs]
+
+-- generare tutti i numeri compresi tra il primo e il secondo elemento della coppia.
