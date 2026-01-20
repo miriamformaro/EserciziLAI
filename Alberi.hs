@@ -32,3 +32,9 @@ alberoInLista (Nodo v sx dx) = alberoInLista sx ++ [v] ++ alberoInLista dx
 specchio :: AlberoBInt -> AlberoBInt
 specchio Vuoto = Vuoto
 specchio (Nodo v sx dx) = Nodo v (specchio dx) (specchio dx)
+
+-- Calcola la somma del valore dei nodi a un livello specifico k
+sommaLivello :: Int -> AlberoBInt -> Int
+sommaLivello _ Vuoto = 0
+sommaLivello 0 (Nodo v _ _) = v
+sommaLivello k (Nodo _ sx dx) = sommaLivello (k-1) sx + sommaLivello (k-1) dx
