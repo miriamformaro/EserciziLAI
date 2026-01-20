@@ -61,3 +61,10 @@ uguali Vuoto Vuoto = True
 uguali _ Vuoto = False
 uguali Vuoto _ = False
 uguali (Nodo v sx dx) (Nodo x sx1 dx1) = v==x && uguali sx sx1 && uguali dx dx1
+
+-- ESAME 14/06/2024 Scrivere una funzione pathtutto x a che restituisce vero se esiste un nodo foglia di
+-- a tale che il cammno dalla radice verso questo nodo foglia è composto da nodi che hanno tutti valore x.
+pathTutto :: Int -> AlberoBInt -> Bool
+pathTutto _ Vuoto = False
+pathTutto x (Nodo v Vuoto Vuoto) = x==v
+pathTutto x (Nodo v sx dx) = x==v && (pathTutto x sx || pathTutto x dx)
