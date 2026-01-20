@@ -38,3 +38,19 @@ sommaLivello :: Int -> AlberoBInt -> Int
 sommaLivello _ Vuoto = 0
 sommaLivello 0 (Nodo v _ _) = v
 sommaLivello k (Nodo _ sx dx) = sommaLivello (k-1) sx + sommaLivello (k-1) dx
+
+-- Conta le Foglie. Una "foglia" è un nodo che non ha figli (sia sinistro che destro sono Vuoto). Spesso agli esami si chiede di contare solo quelle, ignorando i nodi interni.
+contaFoglie :: AlberoBInt -> Int
+contaFoglie Vuoto = 0
+contaFoglie (Nodo _ Vuoto Vuoto) = 1
+contaFoglie (Nodo _ sx dx) = contaFoglie sx + contaFoglie dx
+
+-- Il Massimo Elemento. Trova il valore più alto contenuto in tutto l'albero. (Assumiamo per semplicità che l'albero contenga solo numeri positivi, così se è Vuoto possiamo restituire 0 o un valore minimo).
+massimoAlbero :: AlberoBInt -> Int
+massimoAlbero Vuoto = 0
+massimoAlbero (Nodo v sx dx) = max v (max (massimoAlbero sx) (massimoAlbero dx))
+
+-- restituire True se esiste un cammino che parte dalla radice e arriva a una foglia tale che la somma di tutti i nodi nel percorso sia esattamente k.
+pathSum :: Int -> AlberoBInt -> Bool
+pathSum _ Vuoto = False
+pathSum x (Nodo v sx dx) = x==v || pathSum (x-v) sx || pathSum (x-v) dx
