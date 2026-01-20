@@ -54,3 +54,10 @@ massimoAlbero (Nodo v sx dx) = max v (max (massimoAlbero sx) (massimoAlbero dx))
 pathSum :: Int -> AlberoBInt -> Bool
 pathSum _ Vuoto = False
 pathSum x (Nodo v sx dx) = x==v || pathSum (x-v) sx || pathSum (x-v) dx
+
+-- Questa funzione prende in input due alberi e restituisce True se sono strutturalmente identici e contengono gli stessi valori nelle stesse posizioni.
+uguali :: AlberoBInt -> AlberoBInt -> Bool
+uguali Vuoto Vuoto = True
+uguali _ Vuoto = False
+uguali Vuoto _ = False
+uguali (Nodo v sx dx) (Nodo x sx1 dx1) = v==x && uguali sx sx1 && uguali dx dx1
