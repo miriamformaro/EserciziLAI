@@ -17,3 +17,13 @@ tuttiPositivi (Nodo v sx dx) = (v>0) && tuttiPositivi sx && tuttiPositivi dx
 altezza :: AlberoBInt -> Int
 altezza Vuoto = 0
 altezza (Nodo v sx dx) = 1 + max (altezza sx) (altezza dx)
+
+-- La struttura (chi è figlio di chi) rimane identica, ma ogni valore contenuto nei nodi deve essere moltiplicato per 2.
+raddoppiaAlbero :: AlberoBInt -> AlberoBInt
+raddoppiaAlbero Vuoto = Vuoto
+raddoppiaAlbero (Nodo v sx dx) = Nodo (2*v) (raddoppiaAlbero sx) (raddoppiaAlbero dx)
+
+-- Vogliamo trasformare l'albero in una Lista piatta che contiene tutti i valori. L'ordine deve essere: prima tutto il sottoalbero sinistro, poi il nodo corrente, poi tutto il sottoalbero destro. (Questa si chiama Visita Simmetrica o In-Order).
+alberoInLista :: AlberoBInt -> [Int]
+alberoInLista Vuoto = []
+alberoInLista (Nodo v sx dx) = alberoInLista sx ++ [v] ++ alberoInLista dx
