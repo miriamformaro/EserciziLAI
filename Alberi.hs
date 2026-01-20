@@ -27,3 +27,8 @@ raddoppiaAlbero (Nodo v sx dx) = Nodo (2*v) (raddoppiaAlbero sx) (raddoppiaAlber
 alberoInLista :: AlberoBInt -> [Int]
 alberoInLista Vuoto = []
 alberoInLista (Nodo v sx dx) = alberoInLista sx ++ [v] ++ alberoInLista dx
+
+-- Devi invertire la destra con la sinistra per ogni nodo dell'albero.
+specchio :: AlberoBInt -> AlberoBInt
+specchio Vuoto = Vuoto
+specchio (Nodo v sx dx) = Nodo v (specchio dx) (specchio dx)
