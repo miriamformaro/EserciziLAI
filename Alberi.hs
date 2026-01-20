@@ -68,3 +68,10 @@ pathTutto :: Int -> AlberoBInt -> Bool
 pathTutto _ Vuoto = False
 pathTutto x (Nodo v Vuoto Vuoto) = x==v
 pathTutto x (Nodo v sx dx) = x==v && (pathTutto x sx || pathTutto x dx)
+
+-- creare una lista contenente i valori di tutte le foglie, da sinistra a destra.
+raccogliFoglie :: AlberoBInt -> [Int]
+raccogliFoglie Vuoto = []
+raccogliFoglie (Nodo v Vuoto Vuoto) = [v]
+raccogliFoglie (Nodo _ sx dx) = raccogliFoglie sx ++ raccogliFoglie dx
+
