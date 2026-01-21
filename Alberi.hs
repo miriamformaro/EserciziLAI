@@ -75,3 +75,10 @@ raccogliFoglie Vuoto = []
 raccogliFoglie (Nodo v Vuoto Vuoto) = [v]
 raccogliFoglie (Nodo _ sx dx) = raccogliFoglie sx ++ raccogliFoglie dx
 
+-- Dobbiamo contare quanti nodi nell'albero hanno esattamente un figlio (cioè uno è Vuoto e l'altro è un Nodo). Questi nodi sono spesso chiamati "nodi interni a grado 1".
+contaZoppi :: AlberoBInt -> Int
+contaZoppi Vuoto = 0
+contaZoppi (Nodo v Vuoto Vuoto) = 0
+contaZoppi (Nodo _ sx Vuoto) = 1 + contaZoppi sx
+contaZoppi (Nodo _ Vuoto dx) = 1 + contaZoppi dx
+contaZoppi (Nodo _ sx dx) = contaZoppi sx + contaZoppi dx
