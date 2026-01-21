@@ -35,3 +35,22 @@ Integral a => [a] -> [a]
 -- > :: Ord a => a -> a -> Bool
 -- 3 :: Num a
 (Num a, Ord a) => [a] -> [Bool]
+
+-- filter (\c -> c /= 'a')
+-- filter :: (a->Bool) -> [a] -> [a]
+[Char] -> [Char]
+
+-- map (\n -> n*2)
+-- map :: (a->b) -> [a] -> [b]
+-- 2 => Num
+Num a => [a] -> [a]
+
+-- filter (\x -> x > 10)
+-- filter :: (a->Bool)->[a]->[a]
+-- > => Ord
+-- 10 => Num
+(Num a, Ord a) => [a] -> [a]
+
+-- map (\c -> toUpper c)
+-- map :: (a->b)->[a]->[b]
+[Char] -> [Char]
