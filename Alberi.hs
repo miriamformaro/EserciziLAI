@@ -82,3 +82,9 @@ contaZoppi (Nodo v Vuoto Vuoto) = 0
 contaZoppi (Nodo _ sx Vuoto) = 1 + contaZoppi sx
 contaZoppi (Nodo _ Vuoto dx) = 1 + contaZoppi dx
 contaZoppi (Nodo _ sx dx) = contaZoppi sx + contaZoppi dx
+
+-- Vogliamo la somma dei valori contenuti solo nelle foglie. I valori dei nodi intermedi devono essere ignorati.
+sommaFoglie :: AlberoBInt -> Int
+sommaFoglie Vuoto = 0
+sommaFoglie (Nodo v Vuoto Vuoto) = v
+sommaFoglie (Nodo _ sx dx) = sommaFoglie sx + sommaFoglie dx
