@@ -102,3 +102,19 @@ cdpiuvenduto(X):- \+ (cd(X,_,_), findall(Q, ordine(X,_,Q), LX), cd(C,_,_),
                          sum_list(LC, J), L < J).
 
                                                                          
+% esercizi simili
+% Esercizio 1 (Universale e Negazione)Definire p3(X): vero se e solo se tutti gli amici di X sono maggiorenni (età $\ge 18$)
+% oppure se X non ha amici.
+% Esercizio 2 (Il più giovane)Definire p4(X): vero se e solo se l'amico più giovane di X è una femmina.
+% (Attenzione: ci possono essere più amici con la stessa età minima. Devono essere TUTTI femmine quelli che hanno l'età minima).
+% Esercizio 3 (Confronto di Medie)Definire p5(X): vero se e solo se l'età media degli amici maschi di X è strettamente superiore 
+% all'età media delle amiche femmine di X.
+
+p3(X):- \+ (amico(X,Y), persona(Y,E), E=<18).
+
+p4(X):- findall(E, (amico(X,Y), persona(Y,E)), LE), min_list(LE, M),
+    \+ (amico(X,Y), persona(Y,M), maschio(Y)).
+
+p5(X):- findall(E, (amico(X,Y), persona(Y,E), maschio(Y)), LE),
+    findall(E1, (amico(X,Y), persona(Y,E1), femmina(Y)), LE1), media(LE,M1),
+    media(LE1,M2), M1 > M2.
