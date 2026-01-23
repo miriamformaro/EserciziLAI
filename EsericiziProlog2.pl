@@ -118,3 +118,6 @@ p4(X):- findall(E, (amico(X,Y), persona(Y,E)), LE), min_list(LE, M),
 p5(X):- findall(E, (amico(X,Y), persona(Y,E), maschio(Y)), LE),
     findall(E1, (amico(X,Y), persona(Y,E1), femmina(Y)), LE1), media(LE,M1),
     media(LE1,M2), M1 > M2.
+
+media([],0).
+media(L1,M):-is_list(L1), sum_list(L1,S), length(L1,L), M is S / L.
