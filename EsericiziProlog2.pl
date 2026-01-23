@@ -1,5 +1,4 @@
--- ESERCITAZIONE 11/12/2025
--- n°2
+% ESERCITAZIONE 11/12/2025
 persona(marco, 30).    % Caso OK per p1 (Amiche > Amici)
 persona(giovanni, 30). % Caso FAIL per p1
 persona(paolo, 25).    % Caso OK per p2 (Max amici sono maschi)
@@ -69,5 +68,37 @@ p2(X):- findall(E, (amico(X,Y), persona(Y,E)), L), max_list(L,M),
 stessaetadegliamici(X):- findall(E, (amico(X,Y), persona(Y,E)), L), sum_list(L,LE),
     persona(X,A), A=:=LE.
 
+% ESAME 14/06/2024
+% --- FATTI: cd(Id, Prezzo, Categoria) ---
+cd(1, 15, rock).
+cd(2, 20, pop).
+cd(3, 10, jazz).
+cd(4, 12, rock).      % Altro CD rock (prezzo diverso)
+cd(5, 50, classica).  % Molto costoso
+cd(6, 5, pop).        % Molto economico (e invenduto)
+
+% --- FATTI: cliente(Id, Nome, Eta) ---
+cliente(101, 'Mario Rossi', 25).   % Giovane adulto
+cliente(102, 'Luigi Verdi', 60).   % Anziano (Big spender)
+cliente(103, 'Anna Bianchi', 16).  % Minorenne
+cliente(104, 'Sara Neri', 30).     % Cliente che NON ha fatto ordini (Fantasma)
+
+% --- FATTI: ordine(IdCD, IdCliente, Qta) ---
+ordine(1, 101, 10).   % 1x CD Rock (15 euro)
+ordine(2, 101, 2).   % 2x CD Pop  (20 euro l'uno)
+ordine(3, 102, 10).  % 10x CD Jazz (10 euro l'uno)
+ordine(1, 103, 1).   % 1x CD Rock
+ordine(4, 103, 1).   % 1x Altro CD Rock
+
+% vero se X è l'id del cd acquistato con la maggiore quantità in un unico 
+% ordine -->  non è vero che esiste un cd che è stato acquistato con una 
+% quantità maggiore
+cdmaxaquisto(X):- \+ (ordine(C,_,Q1), ordine(X,_,Q), C \= X, Q1>Q).
+
+% vero se X è il cd di cui sono state vendute il maggior numero di copie tra 
+% tutti gli acquisti
+cdpiuvenduto(X):- \+ (cd(X,_,_), findall(Q, ordine(X,_,Q), LX), cd(C,_,_), 
+                     findall(Q1, ordine(C,_,Q1), LC), C \= X, sum_list(LX, L),
+                         sum_list(LC, J), L < J).
 
                                                                          
