@@ -46,3 +46,9 @@ domanda1([],_,[]).
 domanda1([H|T],N,[H|L2]):-is_list(H), length(H,2), sum_list(H,N), H=[A,B], 
     between(1,9,A), between(1,9,B), !, domanda1(T,N,L2).
 domanda1([_|T],N,L2):-domanda1(T,N,L2).
+
+% Scrivi un predicato estremi_uguali(L1, L2) che, data una lista di liste L1, restituisce in L2 solo le sottoliste in cui il primo e l'ultimo elemento sono identici.
+% ?- estremi_uguali([[1, 2, 1], [1, 2, 3], [a, b, a]], L).
+estremi_uguali([],[]).
+estremi_uguali([H|T],[H|R]):-H=[A|_], last(H,U), A==U,!, estremi_uguali(T,R).
+estremi_uguali([_|T],R):-estremi_uguali(T,R).
