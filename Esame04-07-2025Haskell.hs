@@ -49,3 +49,9 @@ contieneZero xs = [0 `elem` x | x<-xs]
 -- Scrivi una funzione contaMaggioriDi che prende un numero intero k e una lista di liste xss. Restituisce una lista che dice, per ogni sottolista, quanti numeri sono strettamente maggiori di k.
 contaMaggioriDi :: Int -> [[Int]] -> [Int]
 contaMaggioriDi k xss = [ length [x | x<-xs, x > k] | xs <- xss]
+
+-- Scrivi una funzione tuttiPositivi che prende una lista di liste di interi. Restituisce una lista di Booleani: True se tutti i numeri in quella sottolista sono maggiori di 0, False altrimenti.
+tuttiPositivi1 :: [[Int]] -> [Bool]
+tuttiPositivi1 xs = [all (>0) x | x<-xs]
+
+-- ALL SINTASSI: all pred lista
