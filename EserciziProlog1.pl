@@ -52,3 +52,11 @@ domanda1([_|T],N,L2):-domanda1(T,N,L2).
 estremi_uguali([],[]).
 estremi_uguali([H|T],[H|R]):-H=[A|_], last(H,U), A==U,!, estremi_uguali(T,R).
 estremi_uguali([_|T],R):-estremi_uguali(T,R).
+
+% Scrivi un predicato prodotto_alto(L1, Soglia, L2) che tiene solo le sottoliste il cui prodotto degli elementi è strettamente maggiore della Soglia.
+prodotto_alto([],_,[]).
+prodotto_alto([H|T],S,[H|R]):- prodotto(H,P), P>S, !, prodotto_alto(T,S,R).
+prodotto_alto([_|T],S,R):-prodotto_alto(T,S,R).
+
+prodotto([],1).
+prodotto([H|T],P):-prodotto(T,P1), P is H*P1.
