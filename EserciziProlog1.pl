@@ -35,3 +35,14 @@ estrai_sequenza(Curr, [Next|T], [Curr|RestoGruppo], RestoLista) :-
 % Caso 2: Il prossimo elemento NON è consecutivo (o la lista è finita).
 % Chiudiamo il gruppo corrente e restituiamo il resto della lista intatto.
 estrai_sequenza(Curr, RestoInput, [Curr], RestoInput).
+
+% ESAME 13/01/2023
+% Data una lista L1 e un numero intero N, scrivere un predicato Prolog domanda1(L1,N,L2) che restituisca in L2 la lista
+% degli elementi di L1 che sono liste contenenti al massimo due valori interi positivi compresi tra 1 e 9 la cui somma valga N.
+% Esempio:
+% :- domanda1([[3,1],5,[2,1,1],[3],[1,1,1],a, [2,2]], 4, L2).
+
+domanda1([],_,[]).
+domanda1([H|T],N,[H|L2]):-is_list(H), length(H,2), sum_list(H,N), H=[A,B], 
+    between(1,9,A), between(1,9,B), !, domanda1(T,N,L2).
+domanda1([_|T],N,L2):-domanda1(T,N,L2).
