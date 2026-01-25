@@ -73,3 +73,10 @@ merge(L1,[],L1).
 merge([],L2,L2).
 merge([H|T],[X|L2],[H|R]):- H < X,!, merge(T,[X|L2],R).
 merge([H|T],[X|L2],[X|R]):-H>X, merge([H|T],L2,R).
+
+% Scrivi un predicato comprimi(L1, L2) che elimina gli elementi duplicati adiacenti. Se ci sono più copie dello stesso elemento vicine, ne deve rimanere solo una.
+% comprimi([a, a, a, b, c, c, a, a, d], L).
+comprimi([],[]).
+comprimi([X],[X]).
+comprimi([H,H|T],R):-comprimi([H|T],R),!.
+comprimi([H,X|T],[H|R]):- H\=X,comprimi([X|T],R).
