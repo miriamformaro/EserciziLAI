@@ -45,3 +45,7 @@ calcolaRange xs = [maximum x - minimum x | x<-xs]
 -- contieneZero [[1, 2, 3], [0, 5], [], [10, 0]]
 contieneZero :: [[Int]] -> [Bool]
 contieneZero xs = [0 `elem` x | x<-xs]
+
+-- Scrivi una funzione contaMaggioriDi che prende un numero intero k e una lista di liste xss. Restituisce una lista che dice, per ogni sottolista, quanti numeri sono strettamente maggiori di k.
+contaMaggioriDi :: Int -> [[Int]] -> [Int]
+contaMaggioriDi k xss = [ length [x | x<-xs, x > k] | xs <- xss]
