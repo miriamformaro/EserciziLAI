@@ -60,3 +60,11 @@ prodotto_alto([_|T],S,R):-prodotto_alto(T,S,R).
 
 prodotto([],1).
 prodotto([H|T],P):-prodotto(T,P1), P is H*P1.
+
+% Scrivi un predicato filtra_pari(L1, L2) che tiene solo le sottoliste composte interamente da numeri pari.
+filtra_pari([],[]).
+filtra_pari([H|T],[H|R]):- tutti_pari(H), !, filtra_pari(T,R).
+filtra_pari([_|T],R):-filtra_pari(T,R).
+    
+tutti_pari([]).
+tutti_pari([H|T]):- H mod 2 =:= 0, tutti_pari(T).
