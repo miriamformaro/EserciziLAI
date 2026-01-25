@@ -68,3 +68,8 @@ filtra_pari([_|T],R):-filtra_pari(T,R).
     
 tutti_pari([]).
 tutti_pari([H|T]):- H mod 2 =:= 0, tutti_pari(T).
+
+merge(L1,[],L1).
+merge([],L2,L2).
+merge([H|T],[X|L2],[H|R]):- H < X,!, merge(T,[X|L2],R).
+merge([H|T],[X|L2],[X|R]):-H>X, merge([H|T],L2,R).
