@@ -15,3 +15,7 @@ Sia F=x. S1={x/y}, S2={y/g(a)}
 - S2°S1 -> F=x --> y
 Sono diversi risultati.
 
+2. Unificazione
+L'unificazione è un meccanismo logico che verifica se due termini, due espressioni, due formule, sono uguali. 
+Una sostituzione s è detta unificatore di due espressioni se Fs=G. In questo caso si dice che F e G sono unificabili.
+Quindi esistono valori delle variabili che rendono le formule identiche.
