@@ -1,0 +1,17 @@
+1. Sostituzione ed esempio del perchè non è commutativa
+La sostituzione indica l'associazione di un termine ed una variabile.
+Sia S = {x/t, y/g(w), z/b}
+Tutte le variabili x,y,z verranno sostituite con il termine indicato.
+Sia s una sistituzione e F una formula. Si scrive Fs per indicare che la sostituzione s è stata applicata alla formula F.
+E' importante che le sostituzioni avvengano simultaneamente.
+P{x,g(x),y} -> applicando s -> P{t,g(t),g(w)}
+Proprietà:
+- composizione: F1 ° F2 => bisogna rispettare l'ordine
+- identità: t{} = t, S1 ° {} = S1, {}°S2 = S2
+- associativa S1°(S2°S3) = (S1°S2)°S3
+La sostituzione non è commutativa.
+Sia F=x. S1={x/y}, S2={y/g(a)}
+- S1°S2 -> F=y --> g(a)
+- S2°S1 -> F=x --> y
+Sono diversi risultati.
+
