@@ -101,7 +101,10 @@ s p o s a t o ( mario ) .
 uomo ( mario ) .
 uomo ( l u c a ) .
 celibe_unsafe(X):- \+ sposato(X), uomo(X).
-Il programma trova mario sposato e restituisce false, quindi non arriverà mai a verificare se anche luca è sposato.
+Quando Prolog incontra \+ sposato(X) con X libera, si chiede: "Esiste ALMENO un X per cui sposato(X) è vero?"
+La risposta è Sì (esiste Mario).
+Quindi, la negazione \+ diventa Falsa per TUTTI.
+La clausola fallisce immediatamente senza mai legare X a nessuno. X non diventa mai "Mario" o "Luca" dentro quella regola, perché la negazione non produce binding (assegnamenti).
 Uso SAFE del NOT:
 celibe_safe(X):- uomo(X), \+ sposato(X).
 Resituisce Luca.
