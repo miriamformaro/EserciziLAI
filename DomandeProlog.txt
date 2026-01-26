@@ -19,3 +19,30 @@ Sono diversi risultati.
 L'unificazione è un meccanismo logico che verifica se due termini, due espressioni, due formule, sono uguali. 
 Una sostituzione s è detta unificatore di due espressioni se Fs=G. In questo caso si dice che F e G sono unificabili.
 Quindi esistono valori delle variabili che rendono le formule identiche.
+
+3. MGU
+Most Geneal Unifier, si tratta dell'unificatore più generale possibile.
+Sia s un MGU:
+- t1s = t2s
+- per ogni Sj sostituzione => t1Sj = t2Sj, ma Sj<=S, cioè è meno generale di S.
+Siano S1 e S2 MGUs allora vale che S1<=S2 è S2<=S2.
+Sono entrambi unificatori generali ma differiscono per una ridenominazione delle variabili.
+Algorimto per calcolare MGU
+Chiamato anche algoritmo di Robinson, prende in input due termini t e s e restituisce un MGU se esiste altrimenti un fallimento.
+Funzione MGU(s,t):
+  f = {}
+  se t coincide con s ritorna f
+  se s è una variabile
+    - occorre in t (occurs check) => fallimento
+    - inserisci (s->t) in f e ritorna f
+  se t è una variabile
+    - occorre in s (occurs check) => fallimento
+    - inserisci (t->s) in f e ritorna f
+  se s e t sono due termini composti:
+    - diversi funtori o arietà => fallimento
+    - per ogni coppia di argomenti coincidenti si e ti
+      - calcola MGU(si,ti)
+        - se fallisce => fallimento
+        - ritorna f
+      ritorna f
+  fallimento
