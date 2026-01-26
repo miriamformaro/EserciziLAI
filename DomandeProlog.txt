@@ -66,7 +66,7 @@ Proprietà dell'algoritmo:
 3. MGU: si ottiene, se esiste, un MGU.
 
 5. Conseguenza logica
-G è una conseguenza logica di F1,...,Fn, F1,...,Fn => G, se esiste I tale che I=>F1,...,I=>Fn -> I=>G, quindi G è vera per ogni possibile
+G è una conseguenza logica di F1,...,Fn, F1,...,Fn => G, se per ogni I tale che I=>F1,...,I=>Fn -> I=>G, quindi G è vera per ogni possibile
 interpretazione I, se tutte le formule F sono vere.
 Esempio: poor->happy => not(happy) -> not(poor)
 Esempio negativo: poor->happy => not(poor) -> not(happy)
@@ -80,3 +80,16 @@ Prendiamo le clausole definite (o q o p1,...,pn->q) e un insieme Y0 inizialmente
 inserisce o i fatti (q) oppure i fatti le cui premesse sono già nell'insieme. Siccome i fatti sono finiti si arriverà al punto che 
 Yn+1=Yn. Questo sarà il Least Fixed Point che conterrà le operazioni necessarie a varificare l'implicazione logica.
 Questo algoritmo ha una complessità polinomiale ma può essere applicato solo a clausole definite.
+
+6. CUT
+Il CUT in Prolog è un operatore indicato con ! che evita al programma di fare passi in più di backtracking quando ha già raggiunto la
+soluzione.
+Esempio di CUT SAFE:
+max(A,B,A):-A>=B, !.
+max(A,B,B):-A<B.
+Il CUT serve ad evitare passi in più ma il programma funzionerebbe lo stesso.
+Esempio di CUT UNSAFE:
+max(A,B,A):-A>=B,!.
+max(_,B,B).
+Se non ci fosse, il programma restituirebbe un risulato sbagliato perchè aggiorna il massimo come il secondo elemento dato che continerebbe
+ad effettuare passi di backtracking.
