@@ -65,4 +65,18 @@ Proprietà dell'algoritmo:
 2. Completezza: troverà una soluzione più generale
 3. MGU: si ottiene, se esiste, un MGU.
 
-
+5. Conseguenza logica
+G è una conseguenza logica di F1,...,Fn, F1,...,Fn => G, se esiste I tale che I=>F1,...,I=>Fn -> I=>G, quindi G è vera per ogni possibile
+interpretazione I, se tutte le formule F sono vere.
+Esempio: poor->happy => not(happy) -> not(poor)
+Esempio negativo: poor->happy => not(poor) -> not(happy)
+Vogliamo sapere se I implica logicamente G.
+Approccio semantico: costruiamo una tabella di verità dove le righe sono tante quante le interpretazioni che possiamo dare agli atomi della
+formula, quindi se ci sono n atomi la tabella avrà 2^n righe.
+Verifichiamo se ogni implicazione sia vera, se è così allora I implica logicamente G.
+Ma questo approccio ha un costo elevato, O(2^n), è esponenziale quindi non ottimale.
+Approccio sintattico: utilizziamo l'algoritmo del Least Fixed Point.
+Prendiamo le clausole definite (o q o p1,...,pn->q) e un insieme Y0 inizialmente vuoto. Applichiamo all'insieme una funzione monotona che 
+inserisce o i fatti (q) oppure i fatti le cui premesse sono già nell'insieme. Siccome i fatti sono finiti si arriverà al punto che 
+Yn+1=Yn. Questo sarà il Least Fixed Point che conterrà le operazioni necessarie a varificare l'implicazione logica.
+Questo algoritmo ha una complessità polinomiale ma può essere applicato solo a clausole definite.
