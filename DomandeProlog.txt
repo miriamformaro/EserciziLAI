@@ -95,7 +95,7 @@ Se non ci fosse, il programma restituirebbe un risulato sbagliato perchè aggior
 ad effettuare passi di backtracking.
 
 7. NOT
-Il NOT è un operatore in Prolog che si indica con \+ e implementa il concetto di negazione come fallimento.
+Il NOT è un operatore in Prolog che si indica con \+ e implementa il concetto di negazione come fallimento, cioè se Prolog non riesce a dimostrare che una cosa è vera, assume che sia falsa. Il \+ non può "generare" soluzioni, può solo "testare" soluzioni già trovate.
 Uso UNSAFE del NOT:
 s p o s a t o ( mario ) .
 uomo ( mario ) .
