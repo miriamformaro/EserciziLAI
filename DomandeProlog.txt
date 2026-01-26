@@ -47,7 +47,7 @@ Funzione MGU(s,t):
       ritorna f
   fallimento
 
-4. Unifiazione di due espressioni
+4. Unificazione di due espressioni
 Esiste un algoritmo di unificazione basato su regole, che segue una serie di regole ma cui forma generale è P;p => Q,q, P;p => F, dove con 
 F intendiamo un fallimento, p e q sono sostituzioni e P e Q sono insiemi di coppie di espressioni.
 L'algoritmo ci dice se è possibile unificare le due espressioni attraverso queste regole.
@@ -64,3 +64,5 @@ Proprietà dell'algoritmo:
 1. Solidità: termina sempre
 2. Completezza: troverà una soluzione più generale
 3. MGU: si ottiene, se esiste, un MGU.
+
+
