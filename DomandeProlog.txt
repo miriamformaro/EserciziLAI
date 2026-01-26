@@ -93,3 +93,17 @@ max(A,B,A):-A>=B,!.
 max(_,B,B).
 Se non ci fosse, il programma restituirebbe un risulato sbagliato perchè aggiorna il massimo come il secondo elemento dato che continerebbe
 ad effettuare passi di backtracking.
+
+7. NOT
+Il NOT è un operatore in Prolog che si indica con \+ e implementa il concetto di negazione come fallimento.
+Uso UNSAFE del NOT:
+s p o s a t o ( mario ) .
+uomo ( mario ) .
+uomo ( l u c a ) .
+celibe_unsafe(X):- \+ sposato(X), uomo(X).
+Il programma trova mario sposato e restituisce false, quindi non arriverà mai a verificare se anche luca è sposato.
+Uso SAFE del NOT:
+celibe_safe(X):- uomo(X), \+ sposato(X).
+Resituisce Luca.
+Il NOT funziona se le variabili sono istanziale, quindi non libere.
+
