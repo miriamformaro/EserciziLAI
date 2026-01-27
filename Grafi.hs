@@ -65,3 +65,24 @@ nodiConKVicini k n g = filter verifica n
         verifica x = case Map.lookup x g of
                         Nothing -> False
                         Just vs -> length vs == k
+
+viciniInComune :: Node -> Node -> Graph -> [Node]
+viciniInComune a b g = 
+    case Map.lookup a g of
+        Nothing -> []
+        Just va -> 
+            case Map.lookup b g of
+                Nothing -> []
+                Just vb -> [x | x<-va, x `elem` vb]
+
+tuttiIVicini :: Node -> Node -> Graph -> [Node]
+tuttiIVicini a b g =
+    let
+        va = case Map.lookup a g of
+                Nothing -> []
+                Just vs -> vs
+        vb = case Map.lookup b g of
+                Nothing -> []
+                Just vs -> vs
+    in
+        va ++ vb
