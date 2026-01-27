@@ -115,3 +115,15 @@ nonVicino v g = case Map.lookup v g of
                             verifica x = case Map.lookup x g of
                                 Nothing -> False
                                 Just xs -> v `notElem` xs
+
+-- cammino da nodo s a nodo e
+connessi :: Node -> Node -> Graph -> Bool
+connessi s e g = cerca s [] 
+    where
+        cerca :: Node -> [Node] -> Bool
+        cerca u visitati
+            | u == e = True
+            | u `elem` visitati = False
+            | otherwise = case Map.lookup u g of
+                            Nothing -> False
+                            Just vs -> any (\x -> cerca x (u:visitati)) vs
