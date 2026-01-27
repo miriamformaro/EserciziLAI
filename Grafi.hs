@@ -86,3 +86,32 @@ tuttiIVicini a b g =
                 Just vs -> vs
     in
         va ++ vb
+
+haAmicoIsolato :: Node -> Graph -> Bool
+haAmicoIsolato v g = case Map.lookup v g of
+                        Nothing -> False
+                        Just vs -> any verifica vs
+                                where
+                                    verifica :: Node -> Bool
+                                    verifica x = case Map.lookup x g of
+                                                    Nothing -> False
+                                                    Just vs -> null vs
+
+haAmicoVip :: Int -> Node -> Graph -> Bool
+haAmicoVip k v g = case Map.lookup v g of
+                        Nothing -> False
+                        Just vs -> any verifica vs
+                            where 
+                                verifica :: Node -> Bool
+                                verifica x = case Map.lookup x g of
+                                        Nothing -> False
+                                        Just vs -> length vs > k
+nonVicino :: Node -> Graph -> Bool
+nonVicino v g = case Map.lookup v g of
+                    Nothing -> False
+                    Just vs -> any verifica vs
+                        where
+                            verifica :: Node -> Bool
+                            verifica x = case Map.lookup x g of
+                                Nothing -> False
+                                Just xs -> v `notElem` xs && x `elem` vs
