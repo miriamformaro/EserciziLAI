@@ -114,4 +114,4 @@ nonVicino v g = case Map.lookup v g of
                             verifica :: Node -> Bool
                             verifica x = case Map.lookup x g of
                                 Nothing -> False
-                                Just xs -> v `notElem` xs && x `elem` vs
+                                Just xs -> v `notElem` xs
