@@ -127,3 +127,12 @@ connessi s e g = cerca s []
             | otherwise = case Map.lookup u g of
                             Nothing -> False
                             Just vs -> any (\x -> cerca x (u:visitati)) vs
+
+ampiezzaSociale :: Node -> Graph -> Int
+ampiezzaSociale v g = case Map.lookup v g of
+                        Nothing -> 0
+                        Just vs -> if null vs then 0 else maximum vs - minimum vs
+
+
+listaArchi :: Graph -> [(Node, Node)]
+listaArchi g = [(u,v) | (u,vs) <- Map.toList g, v <- vs]
