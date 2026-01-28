@@ -99,3 +99,8 @@ pack([],[]).
 pack([X],[[X]]).
 pack([H,H|T],[[H|L]|R]):-pack([H|T],[L|R]).
 pack([H,X|T],[[H]|R]):-H\=X,pack([X|T],R).
+
+consecutivi([],[]).
+consecutivi([X],[[X]]).
+consecutivi([H,X|T],[[H|L]|R]):-X is H+1, consecutivi([X|T],[L|R]).
+consecutivi([H|T],[[H]|R]):- consecutivi(T,R).
