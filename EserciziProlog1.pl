@@ -80,3 +80,22 @@ comprimi([],[]).
 comprimi([X],[X]).
 comprimi([H,H|T],R):-comprimi([H|T],R),!.
 comprimi([H,X|T],[H|R]):- H\=X,comprimi([X|T],R).
+
+% esercizi sottoliste
+sottoliste_crescenti([],[]).
+sottoliste_crescenti([X],[[X]]).
+sottoliste_crescenti([H,X|T],[[H|L]|R]):-H=<X, sottoliste_crescenti([X|T],[L|R]).
+sottoliste_crescenti([H,X|T],[[H]|R]):-H>X, sottoliste_crescenti([X|T],R).
+
+raggruppa_segni([],[]).
+raggruppa_segni([X],[[X]]).
+raggruppa_segni([H,X|T],[[H|L]|R]):-stesso_segno(H,X),raggruppa_segni([X|T],[L|R]).
+raggruppa_segni([H,X|T],[[H]|R]):- \+ stesso_segno(H,X), raggruppa_segni([X|T],R).
+
+stesso_segno(A, B) :- A >= 0, B >= 0.
+stesso_segno(A, B) :- A < 0, B < 0.
+
+pack([],[]).
+pack([X],[[X]]).
+pack([H,H|T],[[H|L]|R]):-pack([H|T],[L|R]).
+pack([H,X|T],[[H]|R]):-H\=X,pack([X|T],R).
