@@ -1,0 +1,8 @@
+% Definire in Haskell una funzione che riceve una lista di liste di numeri  e restituisce una lista di tuple in cui ogni tupla contiene la 
+% somma, il numero degli elementi e la media della corrispondente lista nella lista di liste in input
+% convertiLista:: Int -> [[Num]] -> [(Num, Int, Num)]
+% Esempio
+% convertilista [[1,2,3],[4,5]] = [(6,3,2),(9,2,4.5)]
+convertLis :: [[Int]] -> [(Int,Int,Float)]
+convertLis xs = [(sum x, length x, fromIntegral(sum x) / fromIntegral(length x)) | x<-xs]
+
