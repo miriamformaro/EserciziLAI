@@ -104,3 +104,9 @@ consecutivi([],[]).
 consecutivi([X],[[X]]).
 consecutivi([H,X|T],[[H|L]|R]):-X is H+1, consecutivi([X|T],[L|R]).
 consecutivi([H|T],[[H]|R]):- consecutivi(T,R).
+
+elementin(N,L,R):-posizione(N,L,1,R).
+
+posizione(_,[],_,[]).
+posizione(N, [H|T], I, [H|R]):- I mod N =:= 0, I1 is I+1, posizione(N,T,I1,R).
+posizione(N,[_|T],I,R):- I mod N =\= 0, I1 is I+1, posizione(N,T,I1,R).
