@@ -54,3 +54,33 @@ Num a => [a] -> [a]
 -- map (\c -> toUpper c)
 -- map :: (a->b)->[a]->[b]
 [Char] -> [Char]
+
+-- \x y -> x + y > 10
+-- > => Ord
+-- 10 => Num
+(Num a, Ord a) => a -> a -> Bool
+
+-- filter (\x -> x /= 0)
+-- filter :: (a->Bool)->[a]->[a]
+-- /= => Eq
+-- 0 => Num
+(Num a, Eq a) => [a] -> [a]
+
+-- map (\x -> [x])
+-- map :: (a->b)->[a]->[b]
+[a] -> [[a]]
+
+-- zip [1..]
+-- zip :: [a] -> [b] -> [(a,b)]
+-- 1 => Num
+Num a => [b] -> [(a,b)]
+
+-- map (\b -> not b)
+-- not :: Bool
+[Bool] -> [Bool]
+
+-- \f g x -> f (g x)
+-- x=a, g=b, f=c
+-- a -> b
+-- b -> c
+(b->c) -> (a -> b) -> a -> c
