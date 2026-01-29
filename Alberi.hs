@@ -88,3 +88,8 @@ sommaFoglie :: AlberoBInt -> Int
 sommaFoglie Vuoto = 0
 sommaFoglie (Nodo v Vuoto Vuoto) = v
 sommaFoglie (Nodo _ sx dx) = sommaFoglie sx + sommaFoglie dx
+
+maiZero :: AlberoBInt -> Bool
+maiZero Vuoto = False
+maiZero (Nodo v Vuoto Vuoto) = v/=0
+maiZero (Nodo v sx dx) = v/=0 && maiZero sx && maiZero sx
