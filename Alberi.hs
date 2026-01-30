@@ -93,3 +93,13 @@ maiZero :: AlberoBInt -> Bool
 maiZero Vuoto = False
 maiZero (Nodo v Vuoto Vuoto) = v/=0
 maiZero (Nodo v sx dx) = v/=0 && maiZero sx && maiZero sx
+
+-- lista nodi in livelli pari
+livelliPari :: AlberoBInt -> [Int]
+livelliPari a = verifica a 0
+    where
+        verifica :: AlberoBInt -> Int -> [Int]
+        verifica Vuoto _ = []
+        verifica (Nodo v sx dx) k
+            | even k = v : (verifica sx (k+1) ++ verifica dx (k+1))
+            | otherwise = verifica sx (k+1) ++ verifica dx (k+1)
