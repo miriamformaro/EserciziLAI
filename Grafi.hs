@@ -136,3 +136,18 @@ ampiezzaSociale v g = case Map.lookup v g of
 
 listaArchi :: Graph -> [(Node, Node)]
 listaArchi g = [(u,v) | (u,vs) <- Map.toList g, v <- vs]
+
+-- percorso tra i nodi
+isPath :: [Node] -> Graph -> Bool
+-- Caso Base 1: Lista vuota è un percorso valido (o False, a seconda della specifica, ma solitamente True)
+isPath [] _ = True
+-- Caso Base 2: Un solo nodo è sempre un percorso valido (non deve andare da nessuna parte)
+isPath [_] _ = True
+-- Caso Ricorsivo: Abbiamo almeno due nodi (x1 e x2)
+isPath (x1:x2:xs) g = 
+    case Map.lookup x1 g of
+        Nothing -> False  -- Se il nodo x1 non esiste nel grafo, percorso impossibile
+        Just vicini -> 
+            if x2 `elem` vicini 
+            then isPath (x2:xs) g  -- x1 è collegato a x2? Bene, controlliamo il resto (da x2 in poi)
+            else False
