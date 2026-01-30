@@ -113,3 +113,14 @@ nodiLivello k a = verifica a 0
             | n == k = [v] 
             | n < k = verifica sx (n+1) ++ verifica dx (n+1)
             |otherwise = []
+
+-- alternativa a nodiLivello
+nL :: Int -> AlberoBInt -> [Int]
+nL _ Vuoto = []
+nL 0 (Nodo v _ _) = [v]
+nL k (Nodo _ sx dx) = nL (k-1) sx ++ nL (k-1) dx
+
+contaFoglieLivello :: Int -> AlberoBInt -> Int
+contaFoglieLivello _ Vuoto = 0
+contaFoglieLivello 0 (Nodo _ Vuoto Vuoto) = 1
+contaFoglieLivello k (Nodo _ sx dx) = contaFoglieLivello (k-1) sx + contaFoglieLivello (k-1) dx
