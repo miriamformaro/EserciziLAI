@@ -12,3 +12,8 @@ keepL y (x:xs) = if x==y && y `elem` xs then keepL y xs else x : keepL y xs
 eliminaOccorrenze :: Int -> [Int] -> [Int]
 eliminaOccorrenze _ [] = []
 eliminaOccorrenze y (x:xs) = if x==y then eliminaOccorrenze y xs else x : eliminaOccorrenze y xs
+
+-- elimina solo la prima
+deleteF :: Int -> [Int] -> [Int]
+deleteF _ [] = []
+deleteF k (x:xs) = if k == x then xs else x : deleteF k xs
