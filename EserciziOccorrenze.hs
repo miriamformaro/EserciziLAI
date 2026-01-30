@@ -7,3 +7,8 @@ delete y (x:xs) = if y==x then x : filter (/=y) xs else x : delete y xs
 keepL :: Int -> [Int] -> [Int]
 keepL _ [] = []
 keepL y (x:xs) = if x==y && y `elem` xs then keepL y xs else x : keepL y xs
+
+-- elimina tutte le occorrenze
+eliminaOccorrenze :: Int -> [Int] -> [Int]
+eliminaOccorrenze _ [] = []
+eliminaOccorrenze y (x:xs) = if x==y then eliminaOccorrenze y xs else x : eliminaOccorrenze y xs
