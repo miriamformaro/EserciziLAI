@@ -103,3 +103,13 @@ livelliPari a = verifica a 0
         verifica (Nodo v sx dx) k
             | even k = v : (verifica sx (k+1) ++ verifica dx (k+1))
             | otherwise = verifica sx (k+1) ++ verifica dx (k+1)
+
+nodiLivello :: Int -> AlberoBInt -> [Int]
+nodiLivello k a = verifica a 0
+    where 
+        verifica :: AlberoBInt -> Int -> [Int]
+        verifica Vuoto _ = []
+        verifica (Nodo v sx dx) n
+            | n == k = [v] 
+            | n < k = verifica sx (n+1) ++ verifica dx (n+1)
+            |otherwise = []
