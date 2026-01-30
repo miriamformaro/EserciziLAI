@@ -17,3 +17,8 @@ eliminaOccorrenze y (x:xs) = if x==y then eliminaOccorrenze y xs else x : elimin
 deleteF :: Int -> [Int] -> [Int]
 deleteF _ [] = []
 deleteF k (x:xs) = if k == x then xs else x : deleteF k xs
+
+-- elimina solo l'ultima
+deleteL :: Int -> [Int] -> [Int]
+deleteL _ [] = []
+deleteL k (x:xs) = if x==k && k `notElem` xs then xs else x : deleteL k xs
