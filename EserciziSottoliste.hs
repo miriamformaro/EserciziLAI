@@ -14,3 +14,6 @@ consecutivi :: [Int] -> [[Int]]
 consecutivi [] = [[]]
 consecutivi [x] = [[x]]
 consecutivi (x:y:xs) = if y == x+1 then (x : head (consecutivi (y:xs))) : tail (consecutivi (y:xs)) else [x] : consecutivi(y:xs)
+
+estraiSott :: Int -> [Int] -> [[Int]]
+estraiSott k xs = filter (\x -> length x <= k) (sub xs)
