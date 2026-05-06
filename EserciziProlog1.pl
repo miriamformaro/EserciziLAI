@@ -115,3 +115,8 @@ segmentlist([],[]).
 segmentlist([X],[[X]]).
 segmentlist([H,X|T],[[H|Y]|R]):- X =:= H+1, segmentlist([X|T],[Y|R]).
 segmentlist([H,X|T],[[H]|R]):- X =\= H+1, segmentlist([X|T],R).
+
+comprimi([],[]).
+comprimi([X],[(1,X)]).
+comprimi([H,H|T],[(N,H)|R]):- comprimi([H|T],[(N1,H)|R]), N is 1+N1.
+comprimi([H,X|T],[(1,H)|R]):- H \= X, comprimi([X|T],R).
