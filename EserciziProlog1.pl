@@ -110,3 +110,8 @@ elementin(N,L,R):-posizione(N,L,1,R).
 posizione(_,[],_,[]).
 posizione(N, [H|T], I, [H|R]):- I mod N =:= 0, I1 is I+1, posizione(N,T,I1,R).
 posizione(N,[_|T],I,R):- I mod N =\= 0, I1 is I+1, posizione(N,T,I1,R).
+
+segmentlist([],[]).
+segmentlist([X],[[X]]).
+segmentlist([H,X|T],[[H|Y]|R]):- X =:= H+1, segmentlist([X|T],[Y|R]).
+segmentlist([H,X|T],[[H]|R]):- X =\= H+1, segmentlist([X|T],R).
