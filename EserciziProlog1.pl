@@ -120,3 +120,10 @@ comprimi([],[]).
 comprimi([X],[(1,X)]).
 comprimi([H,H|T],[(N,H)|R]):- comprimi([H|T],[(N1,H)|R]), N is 1+N1.
 comprimi([H,X|T],[(1,H)|R]):- H \= X, comprimi([X|T],R).
+
+-- Scrivi un predicato split_zeri(Lista, Risultato) che prende una lista di numeri e la divide in sottoliste di elementi contigui, usando lo 0 come separatore. Gli zeri devono essere scartati. Esempio di test: ?- split_zeri([1, 2, 0, 0, 3, 4, 5, 0, 6], R).
+split([],[]).
+split([H],[[H]]):- H=\=0.
+split([H,X|T],[[H,X|R]|L]):- H=\=0,X=\=0, split([X|T],[[X|R]|L]).
+split([H|T],L):- H=:=0, split(T,L).
+split([H,0|T],[[H]|L]):- split(T,L).
