@@ -1,0 +1,51 @@
+Descrivere le tre modalità per la definizione di nuovi tipi di dati in haskell specificando le differenze fra i vari costrutti.
+I nuovi tipi di dati forniti da Haskell sono gestiti e definiti attraverso tre costrutti: type, newtype e data.
+Type è un costrutto che non introduce nulla di nuovo, ma serve a dare dei sinonimi per tipi di dati già esistenti, quindi per il computer
+non cambia nulla ma serve solo a rendere il codice più leggibile. Possono essere creati più sinonimi e annidarli tra di loro ma non
+viene supportata la ricorsione.
+Data è un costrutto più flessibile, ci permette di creare nuovi tipi senza restrizioni, di dichiarare uno o più costruttori 
+assegnandogli diversi valori. La novità è che i tipi definiti con data possono essere ricorsivi, quindi possono essere definiti facendo dei 
+riferimenti a se stessi.
+Newtype è invece un costrutto che ci permette di creare nuovi tipi ma con delle restizioni, ovvero il costruttore può essere soltanto uno e
+può avere un singolo argomento, questo serve ad assicurarci che non facciamo errori di tipizzazione. Non essendoci gestione del tipo a
+runtime garantisce una migliore performance rispetto all'utilizzo di data.
+
+Qual è la differenza tra un Functor e un Applicative Functor? Quale limite di fmap viene superato?
+In Haskell un Functor è un tipo di dato che rappresenta un contenitore sui cui è possibile applicare una funzione ai valori contenuti
+senza alterare la struttura che li contiene. Questo avviene tramite una funzione detta fmap, una funzione che accetta solo funzioni pure,
+cioè che non si trovano a loro volta all'interno di un altro contesto. L'Applicative Functor ci permette invece di superare il limite della
+fmap permettendo attraverso un operatore chiamato Apply <*> di prendere una funzione racchiusa in un contesto e applicarla a sua volta 
+ad un valore che si trova anch'esso all'interno di un contesto.
+
+Cos'è una Monade in Haskell e a cosa serve l'operatore Bind (>>=)?
+In Haskell una Monade è un meccanismo che ci permette di gestire sequenzialmente delle operazioni che si portano dietro degli effetti
+collaterali, come la gestione I\O. L'operatore utilizzato è definito bind, >>=, e ha il compito di estrarre temporanemante un valore
+racchiuso in un contesto e passarlo come input ad una funzione successiva che elabora il dato e lo racchiude in un nuovo contesto
+monadico.
+
+Descrivere il funzionamento della funzione di ordine superiore foldr.
+La funzione foldr serve a ridurre il contenuto di una lista in un singolo risultato applicando un'operazione su tutti i suoi elementi uno
+dopo l'altro. Il nome sta per fold right e questo sta a significare che l'operazione inizia dalla coda della lista e torna indietro verso
+l'inizio. Richiede tre parametri cioè una funzione, un valore iniziale e una lista. Applica quindi la funzione combinando l'ultimo elemento
+con il valore iniziale, prende poi il risultato ottenuto e lo combina con il penultimo elemento e così via. In pratica anzichè scrivere il 
+codice ricorsivo per far scorrere la lista foldr lo fa in automatico.
+
+Cosa si intende per funzioni "Curried" in Haskell?
+Le funzioni utilizzate da Haskell vengono definite curried e sono funzioni che apparentemente sembra che prendano più argomenti, ma in
+realtà ne prendono uno alla volta e il risultato sarà una funzione intermedia la quale attenderà a sua volta un altro argomento
+finchè non si arriva al risultato finale. Ed esempio f :: Int -> (Int -> Int) significa che la funzione prende un intero e restituisce una
+funzione che prende un altro intero.
+
+Cos'è una Classe di Tipi (Type Class) e qual è la differenza tra una funzione polimorfica e una in overloading?
+Una Type Class in Haskell può essere vista come un'interfaccia nella programmazione orientata agli oggetti, cioè una collezione di funzioni
+o metodi che definiscono una proprietà comune che certi tipi di dati devono possedere. Tra le funzioni distinguiamo quelle polimorfiche e 
+quelle overleaded. Le funzioni polimorfiche sono quelle generiche, cioè il loro tipo contiene una variabile che è capace di operare su 
+qualsiasi tipo di dato le venga passato. Le funzioni overloaded presentano invece vincoli di classe, ad esempio l'operatore di addizione (+)
+non può essere utilizzato su qualsiasi tipo a, ma solo sui tipi a che appartengono alla Type Class Num.
+
+Come funzionano le List Comprehensions e i generatori dipendenti?
+Le List Comprehension sono un meccanismo per generare e trasformare le liste in Haskell ispirato alla notazione insiemistica matematica.
+La struttura che utilizzano è [espressione | generatore, regole...] e permettono di costruire liste applicando trasformazioni e filtri agli
+elementi di un insieme di partenza. Potrebbero esserci anche più generatori separati da virgola, in questo caso si parla di generatori
+multipli che funzionano come cicli annidati dove l'ultimo generatore varia più velocemente. In più i generatori potrebbero essere anche
+dipendenti, cioè un generatore successivo può dipendere dalla variabile di uno precedente.
