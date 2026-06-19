@@ -65,6 +65,53 @@ Proprietà dell'algoritmo:
 2. Completezza: troverà una soluzione più generale
 3. MGU: si ottiene, se esiste, un MGU.
 
+Esiste una formulazione dell'algoritmo di unificazione basata su trasformazioni di stato.
+Lo stato dell'algoritmo è rappresentato dalla forma $P ; \rho$, dove:
+
+$P$ è l'insieme delle coppie di espressioni (equazioni) ancora da unificare.
+
+$\rho$ è l'insieme delle sostituzioni accumulate fino a quel momento.
+
+L'algoritmo applica una serie di regole della forma $P ; \rho \Rightarrow Q ; \vartheta$ (passaggio a un nuovo stato) oppure $P ; \rho \Rightarrow \bot$ (dove $\bot$ indica il Fallimento logico).
+
+Le 6 Regole di Trasformazione
+
+Nota: $x$ indica una variabile, $s$ e $t$ indicano termini (costanti, variabili o funzioni).
+
+Triviale (Identità): Se due termini sono identici, li eliminiamo dall'insieme senza fare nulla.
+$\{(s, s)\} \cup P ; \rho \Rightarrow P ; \rho$
+
+Decomposizione: Se abbiamo due funzioni con lo stesso nome e la stessa arietà, le "spogliamo" e mettiamo a confronto i singoli argomenti.
+$\{(f(s_1, ..., s_n), f(t_1, ..., t_n))\} \cup P ; \rho \Rightarrow \{(s_1, t_1), ..., (s_n, t_n)\} \cup P ; \rho$
+
+Conflitto di Simboli: Se abbiamo due funzioni con nomi diversi (es. $f$ e $g$) o arietà diverse, l'unificazione è impossibile.
+$\{(f(...), g(...))\} \cup P ; \rho \Rightarrow \bot$
+
+Orientamento: Se abbiamo una coppia dove il termine a sinistra NON è una variabile, li invertiamo per portare la variabile a sinistra.
+$\{(t, x)\} \cup P ; \rho \Rightarrow \{(x, t)\} \cup P ; \rho$
+(Condizione vitale: $t$ NON deve essere una variabile, altrimenti la regola si applicherebbe all'infinito).
+
+Controllo di Occorrenza (Occur Check): Se proviamo a unificare una variabile $x$ con un termine $t$ che contiene $x$ al suo interno, c'è un ciclo infinito.
+$\{(x, t)\} \cup P ; \rho \Rightarrow \bot$
+(Condizione vitale: $x$ compare in $t$, e $x \neq t$).
+
+Eliminazione della Variabile: Se abbiamo una variabile $x$ e un termine $t$ (e $x$ non compare in $t$), creiamo la sostituzione $\vartheta = \{x/t\}$. La applichiamo a tutte le equazioni rimanenti $P$ e la componiamo con le sostituzioni già trovate.
+$\{(x, t)\} \cup P ; \rho \Rightarrow P\vartheta ; \rho \circ \vartheta$
+
+Esecuzione e Proprietà dell'Algoritmo
+
+Flusso di esecuzione:
+L'algoritmo inizia partendo dallo stato iniziale $\{(E_1, E_2)\} ; \{\}$, dove le sostituzioni sono inizialmente vuote.
+Procede applicando le regole finché l'insieme delle equazioni non si svuota (successo) o finché non si applica una regola che porta a $\bot$ (fallimento).
+
+Le 3 Proprietà Fondamentali:
+
+Terminazione: L'algoritmo termina sempre su qualsiasi input (grazie al fatto che ogni regola riduce la complessità delle equazioni o il numero di variabili).
+
+Solidità (Soundness): Se l'algoritmo termina con successo restituendo una sostituzione $\rho$, allora $\rho$ è un unificatore matematicamente corretto per le espressioni di partenza.
+
+Completezza (e MGU): Se le due espressioni iniziali sono unificabili, l'algoritmo non fallirà mai e la sostituzione $\rho$ che restituirà sarà sempre l'Unificatore Più Generale (MGU).
+
 5. Conseguenza logica
 G è una conseguenza logica di F1,...,Fn, F1,...,Fn => G, se per ogni I tale che I=>F1,...,I=>Fn -> I=>G, quindi G è vera per ogni possibile
 interpretazione I, se tutte le formule F sono vere.
